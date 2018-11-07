@@ -1,12 +1,16 @@
 #pragma once
 
-typedef struct {
+typedef struct ListElemnt_ {
     void* data;
-    ListElmnt* next;
+    struct ListElmnt_* next;
 } ListElmnt;
 
 typedef struct {
     int size;
+    void (*destroy)(void* data);
     ListElmnt *head;
     ListElmnt *tail;
 } List;
+
+extern void list_init(List *list, void (*destroy)(void *data));
+
